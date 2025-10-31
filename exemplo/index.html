@@ -1,3 +1,167 @@
+<!-- ## EXPLICAÇÃO DA MELHORIA IMPLEMENTADA
+
+### 1\. MELHORIA ESCOLHIDA
+
+**Título:** Sistema de Persistência e Visualização de Dados dos Pontos de Interesse
+
+-----
+
+### 2\. JUSTIFICATIVA DA ESCOLHA
+
+#### Problema Identificado no Código Original
+
+O código-fonte original possui uma **falha crítica de funcionalidade**:
+
+  * O usuário preenche um formulário com nome e descrição do ponto
+  * Ao clicar em "Salvar", os dados **NÃO são armazenados** no marcador
+  * O marcador é criado sem nenhuma informação associada
+  * Não é possível consultar posteriormente os dados inseridos
+
+Isso torna o sistema **completamente inútil** para seu propósito de registro de pontos de interesse.
+
+#### Relevância para o SEGEO/DITEC/PF
+
+Para um sistema de inteligência geoespacial da Polícia Federal, é **absolutamente essencial** que:
+
+1.  **Dados de pontos de interesse sejam persistidos** (locais de crime, evidências, bases operacionais)
+2.  **Informações possam ser consultadas** posteriormente pela equipe
+3.  **Coordenadas geográficas sejam exibidas com precisão** para laudos técnicos
+4.  **Sistema seja rastreável** para auditoria e documentação
+
+-----
+
+### 3\. IMPLEMENTAÇÃO
+
+#### 3.1. Alterações Realizadas
+
+##### A) Estrutura de Dados (NOVA)
+
+```javascript
+// Array para armazenar pontos em memória
+let points = [];
+
+// Contador para IDs únicos
+let pointIdCounter = 0;
+```
+
+##### B) Captura de Dados do Formulário (CORRIGIDA)
+
+```javascript
+// Captura os dados do formulário
+const name = nameInput.value.trim();
+const description = descInput.value.trim();
+
+// Cria objeto do ponto com TODOS os dados
+const newPoint = {
+    id: pointIdCounter++,
+    lat: lat,
+    lng: lng,
+    name: name,             // ← ANTES: era ignorado
+    description: description    // ← ANTES: era ignorado
+};
+
+// Adiciona ao array
+points.push(newPoint);
+```
+
+##### C) Função de Criação de Marcadores (NOVA)
+
+```javascript
+function createMarker(point) {
+    const marker = L.marker([point.lat, point.lng]).addTo(map);
+    
+    // Popup informativo com dados do ponto
+    const infoHTML = `
+        <h3>${point.name}</h3>
+        <p><strong>Descrição:</strong><br>${point.description}</p>
+        <p>Lat: ${point.lat.toFixed(6)}° | Lng: ${point.lng.toFixed(6)}°</p>
+    `;
+    
+    marker.bindPopup(infoHTML);
+    return marker;
+}
+```
+
+##### D) Validação de Dados (NOVA)
+
+```javascript
+if (!name) {
+    alert('Por favor, preencha o nome do ponto');
+    return;
+}
+```
+
+##### E) Logs para Debug (NOVO)
+
+```javascript
+console.log('Ponto salvo:', newPoint);
+console.log('Total de pontos:', points.length);
+```
+
+-----
+
+-----
+
+### 4\. USO DE INTELIGÊNCIA ARTIFICIAL
+
+#### 4.1. SIM, utilizei IA no desenvolvimento
+
+**Ferramenta:** Claude (Anthropic) - Assistente de IA conversacional
+
+#### 4.2. Procedimento Utilizado
+
+##### Etapa 1: Análise do Código Original
+
+  * Forneci os arquivos index.html e styles.css originais ao Claude
+  * Solicitei análise crítica das funcionalidades existentes
+  * IA identificou a falha de não-persistência dos dados
+
+##### Etapa 2: Design da Solução
+
+  * Discuti com a IA as melhores práticas para resolver o problema
+  * IA sugeriu estrutura de dados (array de objetos)
+  * Definimos juntos a interface de visualização (popup informativo)
+
+##### Etapa 3: Implementação Guiada
+
+  * IA forneceu código base comentado
+  * Revisei e testei cada funcionalidade
+  * Solicitei ajustes para maior clareza e manutenibilidade
+
+##### Etapa 4: Validação e Testes
+
+  * IA ajudou a criar casos de teste
+  * Identificamos e corrigimos problemas de encoding (UTF-8)
+  * Validamos funcionamento em diferentes navegadores
+
+#### 4.3. Como a IA Auxiliou
+
+**Vantagens:**
+
+  * Identificação rápida de falhas no código original
+  * Sugestões de boas práticas de JavaScript
+  * Código limpo e bem documentado
+  * Explicações detalhadas de cada mudança
+  * Adaptação para contexto específico (Polícia Federal)
+
+**Limitações Respeitadas:**
+
+  * Não usei localStorage (incompatível com ambiente de testes)
+  * Implementei armazenamento em memória (array JavaScript)
+  * Código funcional para demonstração do conceito
+
+#### 4.4. Aprendizado Adquirido
+
+Através da interação com a IA, aprendi:
+
+  * Importância da persistência de dados em aplicações web
+  * Boas práticas de manipulação de eventos em JavaScript
+  * Técnicas de debugging com console.log
+  * Como estruturar código para manutenibilidade
+
+ -->
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
