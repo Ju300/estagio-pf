@@ -1,40 +1,40 @@
-<!-- ## EXPLICAÇÃO DA MELHORIA IMPLEMENTADA
+<!-- EXPLICAÇÃO DA MELHORIA IMPLEMENTADA
 
-### 1\. MELHORIA ESCOLHIDA
+ 1\. MELHORIA ESCOLHIDA
 
-**Título:** Sistema de Persistência e Visualização de Dados dos Pontos de Interesse
+Título: Sistema de Persistência e Visualização de Dados dos Pontos de Interesse
 
 -----
 
-### 2\. JUSTIFICATIVA DA ESCOLHA
+ 2\. JUSTIFICATIVA DA ESCOLHA
 
-#### Problema Identificado no Código Original
+ Problema Identificado no Código Original
 
-O código-fonte original possui uma **falha crítica de funcionalidade**:
+O código-fonte original possui uma falha crítica de funcionalidade**:
 
   * O usuário preenche um formulário com nome e descrição do ponto
-  * Ao clicar em "Salvar", os dados **NÃO são armazenados** no marcador
+  * Ao clicar em "Salvar", os dados NÃO são armazenados** no marcador
   * O marcador é criado sem nenhuma informação associada
   * Não é possível consultar posteriormente os dados inseridos
 
-Isso torna o sistema **completamente inútil** para seu propósito de registro de pontos de interesse.
+Isso torna o sistema completamente inútil para seu propósito de registro de pontos de interesse.
 
 #### Relevância para o SEGEO/DITEC/PF
 
-Para um sistema de inteligência geoespacial da Polícia Federal, é **absolutamente essencial** que:
+Para um sistema de inteligência geoespacial da Polícia Federal, é absolutamente essencial que:
 
-1.  **Dados de pontos de interesse sejam persistidos** (locais de crime, evidências, bases operacionais)
-2.  **Informações possam ser consultadas** posteriormente pela equipe
-3.  **Coordenadas geográficas sejam exibidas com precisão** para laudos técnicos
-4.  **Sistema seja rastreável** para auditoria e documentação
+1.  Dados de pontos de interesse sejam persistidos (locais de crime, evidências, bases operacionais)
+2.  Informações possam ser consultadas posteriormente pela equipe
+3.  Coordenadas geográficas sejam exibidas com precisão para laudos técnicos
+4.  Sistema seja rastreável** para auditoria e documentação
 
 -----
 
-### 3\. IMPLEMENTAÇÃO
+ 3\. IMPLEMENTAÇÃO
 
-#### 3.1. Alterações Realizadas
+ 3.1. Alterações Realizadas
 
-##### A) Estrutura de Dados (NOVA)
+ A) Estrutura de Dados (NOVA)
 
 ```javascript
 // Array para armazenar pontos em memória
@@ -98,45 +98,40 @@ console.log('Ponto salvo:', newPoint);
 console.log('Total de pontos:', points.length);
 ```
 
------
 
------
+ 4\. USO DE INTELIGÊNCIA ARTIFICIAL
 
-### 4\. USO DE INTELIGÊNCIA ARTIFICIAL
+ 4.1. SIM, utilizei IA no desenvolvimento
 
-#### 4.1. SIM, utilizei IA no desenvolvimento
+  4.2. Procedimento Utilizado
 
-**Ferramenta:** Claude (Anthropic) - Assistente de IA conversacional
+  Etapa 1: Análise do Código Original
 
-#### 4.2. Procedimento Utilizado
-
-##### Etapa 1: Análise do Código Original
-
-  * Forneci os arquivos index.html e styles.css originais ao Claude
+  * Forneci os arquivos index.html e styles.css originais a IA
   * Solicitei análise crítica das funcionalidades existentes
   * IA identificou a falha de não-persistência dos dados
 
-##### Etapa 2: Design da Solução
+  Etapa 2: Design da Solução
 
   * Discuti com a IA as melhores práticas para resolver o problema
   * IA sugeriu estrutura de dados (array de objetos)
   * Definimos juntos a interface de visualização (popup informativo)
 
-##### Etapa 3: Implementação Guiada
+  Etapa 3: Implementação Guiada
 
   * IA forneceu código base comentado
   * Revisei e testei cada funcionalidade
   * Solicitei ajustes para maior clareza e manutenibilidade
 
-##### Etapa 4: Validação e Testes
+  Etapa 4: Validação e Testes
 
   * IA ajudou a criar casos de teste
   * Identificamos e corrigimos problemas de encoding (UTF-8)
   * Validamos funcionamento em diferentes navegadores
 
-#### 4.3. Como a IA Auxiliou
+  4.3. Como a IA Auxiliou
 
-**Vantagens:**
+ Vantagens:
 
   * Identificação rápida de falhas no código original
   * Sugestões de boas práticas de JavaScript
@@ -144,13 +139,13 @@ console.log('Total de pontos:', points.length);
   * Explicações detalhadas de cada mudança
   * Adaptação para contexto específico (Polícia Federal)
 
-**Limitações Respeitadas:**
+ Limitações Respeitadas:
 
   * Não usei localStorage (incompatível com ambiente de testes)
   * Implementei armazenamento em memória (array JavaScript)
   * Código funcional para demonstração do conceito
 
-#### 4.4. Aprendizado Adquirido
+  4.4. Aprendizado Adquirido
 
 Através da interação com a IA, aprendi:
 
